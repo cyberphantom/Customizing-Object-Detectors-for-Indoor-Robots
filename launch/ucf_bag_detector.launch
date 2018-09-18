@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="ucf_drone_detector" pkg="ucf_ardrone_ros" type="bag_analyzing.py" output="screen"/>
+  <!--<node pkg="rosbag" type="play" name="player" output="screen" args="&#45;&#45;clock /home/saif/bag_files/robot1.bag"/>-->
+
+</launch>
