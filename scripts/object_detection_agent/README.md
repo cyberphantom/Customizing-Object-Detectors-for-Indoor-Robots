@@ -1,1 +1,1 @@
-dronet is forked from https://github.com/pierluigiferrari/ssd_keras and heavily modified for the new DUNet model
+DUNet model is built on the forked and heavily modified https://github.com/pierluigiferrari/ssd_keras
