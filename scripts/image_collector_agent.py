@@ -1,4 +1,21 @@
 #!/usr/bin/env python
+
+'''
+Copyright (C) 2018 Saif Alabachi
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+'''
+
 from __future__ import print_function
 import rospy
 import cv2, time, os, csv
@@ -158,23 +175,6 @@ class collector:
         ticks = time.time()
         delta_time = ticks - self.prev_time
 
-        '''Uncomment to use online trackers'''
-        # _, bbx_online = self.online_tracker.update(frame)
-        #
-        # online_x = int(bbx_online[2]) - ((int(bbx_online[2] - int(bbx_online[0])) /2))
-        # online_y = int(bbx_online[3]) - ((int(bbx_online[3] - int(bbx_online[1])) /2))
-        #
-        # cv2.rectangle(frame,
-        #               (int(bbx_online[0]), int(bbx_online[1])),
-        #               (int(bbx_online[2]), int(bbx_online[3])),
-        #               [0,255,0], 2)
-        #
-        # self.online_centroid = [online_x, online_y]
-        #
-        # cv2.line(frame, (online_x - 4, online_y), (online_x + 4, online_y), (200, 50, 50), 2)
-        # cv2.line(frame, (online_x, online_y - 4), (online_x, online_y + 4), (200, 50
-        #                                                                      , 50), 2)
-
         '''Uncomment to use MOSSE'''
         gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         for mosse in self.mosses:
@@ -198,45 +198,6 @@ class collector:
             mosse.update(gray_frame)
             self.mosse_centroid = mosse.pos
             mosse.draw_state(frame)
-
-
-        '''re3 tracking call'''
-        #self.re3_bbx = tracker.track(self.obj_class, frame[:,:,::-1])
-
-        # if delta_time >= 0.5:
-        #
-        #     ''' Save objects '''
-        #     # cv2.imwrite(os.path.join(folder, self.obj_class, str(ticks).split(".")[0]) +
-        #     #             '.png', frame[int(self.re3_bbx[1]):int(self.re3_bbx[3]),
-        #     #                    int(self.re3_bbx[0]):int(self.re3_bbx[2])])
-        #
-        #     ''' Save frames with BBX '''
-        #     file_name = str(ticks).split(".")[0]
-        #
-        #
-        #     cv2.imwrite(os.path.join(folder, self.obj_class, file_name) + '.png', frame)
-        #     if file_name != str(self.prev_time).split(".")[0]:
-        #         self.data_file.append([os.path.join(folder, self.obj_class, file_name) + '.png', cols, rows, self.obj_class, int(self.re3_bbx[0]),
-        #                            int(self.re3_bbx[1]), int(self.re3_bbx[2]),
-        #                            int(self.re3_bbx[3])])
-        #
-        #     self.prev_time = ticks
-        #
-        # cv2.rectangle(frame,
-        #               (int(self.re3_bbx[0]), int(self.re3_bbx[1])),
-        #               (int(self.re3_bbx[2]), int(self.re3_bbx[3])),
-        #               [0,0,255], 2)
-        #
-        #
-        # ''' Create a centroid point just to check accuracy'''
-        # re3_x = int(self.re3_bbx[2]) - ((int(self.re3_bbx[2] - int(self.re3_bbx[0])) /2))
-        # re3_y = int(self.re3_bbx[3]) - ((int(self.re3_bbx[3] - int(self.re3_bbx[1])) /2))
-        # self.re3_centroid = [re3_x, re3_y]
-        #
-        # cv2.line(frame, (re3_x - 4, re3_y), (re3_x + 4, re3_y), (50, 50, 200), 2)
-        # cv2.line(frame, (re3_x, re3_y - 4), (re3_x, re3_y + 4), (50, 50, 200), 2)
-
-
 
       else:
         self.mosse_centroid = None

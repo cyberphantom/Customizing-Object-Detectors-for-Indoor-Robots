@@ -1,4 +1,21 @@
 #!/usr/bin/env python
+
+'''
+Copyright (C) 2018 Saif Alabachi
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+'''
+
 from __future__ import print_function
 import rospy, rosbag, subprocess, yaml
 import cv2, time
@@ -131,27 +148,6 @@ class drone_IO:
       #print(info)
 
       if len(info) > 0:
-          # if len(info) == 1:
-          #       self.data_file.append([truncate(self.before_det_t), truncate(self.after_det_t), truncate(det_time), len(info), str(info[0][4]).partition(':')[0].partition("'")[2], int(str(info[0][4]).partition(':')[2].partition('%')[0])*0.01])
-          # elif len(info) == 2:
-          #       self.data_file.append([truncate(self.before_det_t), truncate(self.after_det_t), truncate(det_time), len(info), str(info[0][4]).partition(':')[0].partition("'")[2], int(str(info[0][4]).partition(':')[2].partition('%')[0])*0.01, str(info[1][4]).partition(':')[0].partition("'")[2], int(str(info[1][4]).partition(':')[2].partition('%')[0])*0.01])
-          # elif len(info) == 3:
-          #       self.data_file.append([truncate(self.before_det_t), truncate(self.after_det_t), truncate(det_time), len(info), str(info[0][4]).partition(':')[0].partition("'")[2], int(str(info[0][4]).partition(':')[2].partition('%')[0])*0.01, str(info[1][4]).partition(':')[0].partition("'")[2], int(str(info[1][4]).partition(':')[2].partition('%')[0])*0.01, str(info[2][4]).partition(':')[0].partition("'")[2], int(str(info[2][4]).partition(':')[2].partition('%')[0])*0.01])
-          # elif len(info) == 4:
-          #       self.data_file.append([truncate(self.before_det_t), truncate(self.after_det_t), truncate(det_time), len(info), str(info[0][4]).partition(':')[0].partition("'")[2], int(str(info[0][4]).partition(':')[2].partition('%')[0])*0.01, str(info[1][4]).partition(':')[0].partition("'")[2], int(str(info[1][4]).partition(':')[2].partition('%')[0])*0.01, str(info[2][4]).partition(':')[0].partition("'")[2], int(str(info[2][4]).partition(':')[2].partition('%')[0])*0.01, str(info[3][4]).partition(':')[0].partition("'")[2], int(str(info[3][4]).partition(':')[2].partition('%')[0])*0.01])
-          # elif len(info) == 5:
-          #       self.data_file.append([truncate(self.before_det_t), truncate(self.after_det_t), truncate(det_time), len(info), str(info[0][4]).partition(':')[0].partition("'")[2], int(str(info[0][4]).partition(':')[2].partition('%')[0])*0.01, str(info[1][4]).partition(':')[0].partition("'")[2], int(str(info[1][4]).partition(':')[2].partition('%')[0])*0.01, str(info[2][4]).partition(':')[0].partition("'")[2], int(str(info[2][4]).partition(':')[2].partition('%')[0])*0.01, str(info[3][4]).partition(':')[0].partition("'")[2], int(str(info[3][4]).partition(':')[2].partition('%')[0])*0.01, str(info[4][4]).partition(':')[0].partition("'")[2], int(str(info[4][4]).partition(':')[2].partition('%')[0])*0.01])
-          # elif len(info) == 6:
-          #       self.data_file.append([truncate(self.before_det_t), truncate(self.after_det_t), truncate(det_time), len(info), str(info[0][4]).partition(':')[0].partition("'")[2], int(str(info[0][4]).partition(':')[2].partition('%')[0])*0.01, str(info[1][4]).partition(':')[0].partition("'")[2], int(str(info[1][4]).partition(':')[2].partition('%')[0])*0.01, str(info[2][4]).partition(':')[0].partition("'")[2], int(str(info[2][4]).partition(':')[2].partition('%')[0])*0.01, str(info[3][4]).partition(':')[0].partition("'")[2], int(str(info[3][4]).partition(':')[2].partition('%')[0])*0.01, str(info[4][4]).partition(':')[0].partition("'")[2], int(str(info[4][4]).partition(':')[2].partition('%')[0])*0.01, str(info[5][4]).partition(':')[0].partition("'")[2], int(str(info[5][4]).partition(':')[2].partition('%')[0])*0.01])
-          # elif len(info) == 7:
-          #       self.data_file.append([truncate(self.before_det_t), truncate(self.after_det_t), truncate(det_time), len(info), str(info[0][4]).partition(':')[0].partition("'")[2], int(str(info[0][4]).partition(':')[2].partition('%')[0])*0.01, str(info[1][4]).partition(':')[0].partition("'")[2], int(str(info[1][4]).partition(':')[2].partition('%')[0])*0.01, str(info[2][4]).partition(':')[0].partition("'")[2], int(str(info[2][4]).partition(':')[2].partition('%')[0])*0.01, str(info[3][4]).partition(':')[0].partition("'")[2], int(str(info[3][4]).partition(':')[2].partition('%')[0])*0.01, str(info[4][4]).partition(':')[0].partition("'")[2], int(str(info[4][4]).partition(':')[2].partition('%')[0])*0.01, str(info[5][4]).partition(':')[0].partition("'")[2], int(str(info[5][4]).partition(':')[2].partition('%')[0])*0.01, str(info[6][4]).partition(':')[0].partition("'")[2], int(str(info[6][4]).partition(':')[2].partition('%')[0])*0.01])
-          # elif len(info) == 8:
-          #       self.data_file.append([truncate(self.before_det_t), truncate(self.after_det_t), truncate(det_time), len(info), str(info[0][4]).partition(':')[0].partition("'")[2], int(str(info[0][4]).partition(':')[2].partition('%')[0])*0.01, str(info[1][4]).partition(':')[0].partition("'")[2], int(str(info[1][4]).partition(':')[2].partition('%')[0])*0.01, str(info[2][4]).partition(':')[0].partition("'")[2], int(str(info[2][4]).partition(':')[2].partition('%')[0])*0.01, str(info[3][4]).partition(':')[0].partition("'")[2], int(str(info[3][4]).partition(':')[2].partition('%')[0])*0.01, str(info[4][4]).partition(':')[0].partition("'")[2], int(str(info[4][4]).partition(':')[2].partition('%')[0])*0.01, str(info[5][4]).partition(':')[0].partition("'")[2], int(str(info[5][4]).partition(':')[2].partition('%')[0])*0.01, str(info[6][4]).partition(':')[0].partition("'")[2], int(str(info[6][4]).partition(':')[2].partition('%')[0])*0.01, str(info[7][4]).partition(':')[0].partition("'")[2], int(str(info[7][4]).partition(':')[2].partition('%')[0])*0.01])
-          # elif len(info) == 9:
-          #       self.data_file.append([truncate(self.before_det_t), truncate(self.after_det_t), truncate(det_time), len(info), str(info[0][4]).partition(':')[0].partition("'")[2], int(str(info[0][4]).partition(':')[2].partition('%')[0])*0.01, str(info[1][4]).partition(':')[0].partition("'")[2], int(str(info[1][4]).partition(':')[2].partition('%')[0])*0.01, str(info[2][4]).partition(':')[0].partition("'")[2], int(str(info[2][4]).partition(':')[2].partition('%')[0])*0.01, str(info[3][4]).partition(':')[0].partition("'")[2], int(str(info[3][4]).partition(':')[2].partition('%')[0])*0.01, str(info[4][4]).partition(':')[0].partition("'")[2], int(str(info[4][4]).partition(':')[2].partition('%')[0])*0.01, str(info[5][4]).partition(':')[0].partition("'")[2], int(str(info[5][4]).partition(':')[2].partition('%')[0])*0.01, str(info[6][4]).partition(':')[0].partition("'")[2], int(str(info[6][4]).partition(':')[2].partition('%')[0])*0.01, str(info[7][4]).partition(':')[0].partition("'")[2], int(str(info[7][4]).partition(':')[2].partition('%')[0])*0.01, str(info[8][4]).partition(':')[0].partition("'")[2], int(str(info[8][4]).partition(':')[2].partition('%')[0])*0.01])
-          # elif len(info) == 10:
-          #       self.data_file.append([truncate(self.before_det_t), truncate(self.after_det_t), truncate(det_time), len(info), str(info[0][4]).partition(':')[0].partition("'")[2], int(str(info[0][4]).partition(':')[2].partition('%')[0])*0.01, str(info[1][4]).partition(':')[0].partition("'")[2], int(str(info[1][4]).partition(':')[2].partition('%')[0])*0.01, str(info[2][4]).partition(':')[0].partition("'")[2], int(str(info[2][4]).partition(':')[2].partition('%')[0])*0.01, str(info[3][4]).partition(':')[0].partition("'")[2], int(str(info[3][4]).partition(':')[2].partition('%')[0])*0.01, str(info[4][4]).partition(':')[0].partition("'")[2], int(str(info[4][4]).partition(':')[2].partition('%')[0])*0.01, str(info[5][4]).partition(':')[0].partition("'")[2], int(str(info[5][4]).partition(':')[2].partition('%')[0])*0.01, str(info[6][4]).partition(':')[0].partition("'")[2], int(str(info[6][4]).partition(':')[2].partition('%')[0])*0.01, str(info[7][4]).partition(':')[0].partition("'")[2], int(str(info[7][4]).partition(':')[2].partition('%')[0])*0.01, str(info[8][4]).partition(':')[0].partition("'")[2], int(str(info[8][4]).partition(':')[2].partition('%')[0])*0.01, str(info[9][4]).partition(':')[0].partition("'")[2], int(str(info[9][4]).partition(':')[2].partition('%')[0])*0.01])
-
 
           if len(info) == 1:
             #print(str(info[0].partition(':')[0]), float(info[0].partition(':')[2]))

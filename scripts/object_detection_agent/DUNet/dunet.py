@@ -1,7 +1,7 @@
 '''
-A Keras port of the original Caffe SSD300 network.
-
-Copyright (C) 2018 Pierluigi Ferrari
+Copyright (C) 2018 Saif Alabachi
+A Keras port of the original Copyright (C) 2018 Pierluigi Ferrari
+ported from Caffe SSD300 network.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
