@@ -63,7 +63,6 @@ install(PROGRAMS		scripts/control_agent/controlAgent.py
 				scripts/ucf_drone_mosse.py
 				scripts/image_collector_agent.py
                 		scripts/ucf_drone_object_detection.py
-				scripts/myFiles/listener.py
 
         DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
