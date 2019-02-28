@@ -11,5 +11,4 @@ Package Dependencies:
 
 ## [Related Dataset]: (https://goo.gl/xE6Jkr)
 
-### Paper: Customizing-Object-Detectors-for-Indoor-Robots
-    (https://arxiv.org/abs/1902.10671)
+### Paper: [Customizing-Object-Detectors-for-Indoor-Robots](https://arxiv.org/abs/1902.10671)
